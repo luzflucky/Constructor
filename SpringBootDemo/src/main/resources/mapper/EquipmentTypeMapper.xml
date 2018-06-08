@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maomi.mapper.EquipmentTypeMapper">
+  <resultMap id="BaseResultMap" type="com.maomi.domain.EquipmentType">
+    <id column="WID" jdbcType="VARCHAR" property="wid" />
+    <result column="EQUIPMENT_TYPE_NAME" jdbcType="VARCHAR" property="equipmentTypeName" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="OPRATION" jdbcType="VARCHAR" property="opration" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="ORDER_NO" jdbcType="VARCHAR" property="orderNo" />
+    <result column="EQUIPMENT_TYPE_ID" jdbcType="VARCHAR" property="typeId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    a.WID, a.EQUIPMENT_TYPE_NAME, a.REMARK, a.OPRATION, a.CREATE_DATE, a.UPDATE_DATE, a.ORDER_NO
+  </sql>
+
+  <!-- 设备类型详情 start -->
+  <select id="queryEquipmentTypeByWid" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_equipment_type a
+    where a.WID = #{wid,jdbcType=VARCHAR}
+  </select>
+  <!-- 设备类型详情 end -->
+
+  <!-- 设备类型分页列表 start -->
+  <select id="queryEquipmentTypeByPage" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    ,c.EQUIPMENT_TYPE_ID
+    from tb_equipment_type a
+    LEFT JOIN (SELECT b.EQUIPMENT_TYPE_ID FROM tb_equipment_manage b GROUP BY b.EQUIPMENT_TYPE_ID) c
+    ON c.EQUIPMENT_TYPE_ID = a.WID
+  </select>
+  <!-- 设备类型分页列表 end -->
+
+  <!-- 设备类型下拉列表 start -->
+  <select id="queryByListEquipmentTypes" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_equipment_type a
+    <where>
+      <if test="true">
+        1=1
+      </if>
+      <if test="status!=null and status!=''">
+        and a.OPRATION = #{status}
+      </if>
+    </where>
+    <if test="typeId!=null and typeId!=''">
+      UNION ALL
+      SELECT
+      <include refid="Base_Column_List" />
+      FROM tb_equipment_type a
+      where a.WID = #{typeId}
+    </if>
+  </select>
+  <!-- 设备类型下拉列表 end -->
+
+  <!-- 设备类型删除 start -->
+  <delete id="deleteEquipmentTypeByWid" parameterType="java.lang.String">
+    delete from tb_equipment_type
+    where WID = #{wid,jdbcType=VARCHAR}
+  </delete>
+  <!-- 设备类型删除 end -->
+
+  <!-- 设备类型新增 start -->
+  <insert id="insertEquipmentType" parameterType="com.maomi.domain.EquipmentType">
+    <selectKey order="BEFORE" keyProperty="wid" resultType="String">
+      <![CDATA[SELECT UUID() FROM dual]]>
+    </selectKey>
+    insert into tb_equipment_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="wid != null">
+        WID,
+      </if>
+      <if test="equipmentTypeName != null">
+        EQUIPMENT_TYPE_NAME,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="opration != null">
+        OPRATION,
+      </if>
+        CREATE_DATE,
+        UPDATE_DATE,
+      <if test="orderNo != null">
+        ORDER_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="wid != null">
+        #{wid,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentTypeName != null">
+        #{equipmentTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="opration != null">
+        #{opration,jdbcType=VARCHAR},
+      </if>
+      sysdate(),
+      sysdate(),
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <!-- 设备类型新增 end -->
+
+  <!-- 设备类型修改 start -->
+  <update id="updateEquipmentType" parameterType="com.maomi.domain.EquipmentType">
+    update tb_equipment_type
+    <set>
+      <if test="equipmentTypeName != null">
+        EQUIPMENT_TYPE_NAME = #{equipmentTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="opration != null">
+        OPRATION = #{opration,jdbcType=VARCHAR},
+      </if>
+      UPDATE_DATE = sysdate(),
+      <if test="orderNo != null">
+        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where WID = #{wid,jdbcType=VARCHAR}
+  </update>
+  <!-- 设备类型修改 end -->
+
+  <!--设备类型修改状态 start-->
+  <update id="updateEquipmentTypeStatus" parameterType="map">
+    update tb_equipment_type
+    <set>
+      <if test="opration != null">
+        OPRATION = #{opration,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where WID = #{wid,jdbcType=VARCHAR}
+  </update>
+  <!--设备类型修改状态 end-->
+</mapper>

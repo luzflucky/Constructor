@@ -19,8 +19,14 @@
 *.tar.gz
 *.rar
 
+#eclipse
+/target/
+/.settings/
+.classpath
+.project
+
 # IntelliJ IDEA
-.idea
+/.idea/
 *.iws
 *.iml
 *.ipr
