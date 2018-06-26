@@ -1,0 +1,12 @@
+server:
+  port: 8081
+spring:
+  redis:
+    database: 0
+    host: 39.106.58.46
+    port: 6379
+    password: luzflucky
+    pool:
+      max-active: 30
+    timeout: 3000
+
