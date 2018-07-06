@@ -1,0 +1,9 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: mongodb-server
+  data:
+    mongodb:
+      uri: mongodb://lucky:lucky@39.106.58.46:27017/test
+

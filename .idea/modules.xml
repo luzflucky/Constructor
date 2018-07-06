@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Constructor.iml" filepath="$PROJECT_DIR$/.idea/Constructor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringBootMongodb/SpringBootMongodb.iml" filepath="$PROJECT_DIR$/SpringBootMongodb/SpringBootMongodb.iml" />
       <module fileurl="file://$PROJECT_DIR$/Springlogback/Springlogback.iml" filepath="$PROJECT_DIR$/Springlogback/Springlogback.iml" />
-      <module fileurl="file://$PROJECT_DIR$/springbootredis/springbootredis.iml" filepath="$PROJECT_DIR$/springbootredis/springbootredis.iml" />
     </modules>
   </component>
 </project>

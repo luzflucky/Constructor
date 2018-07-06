@@ -3,7 +3,8 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/springbootredis/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringCloudClinet/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringBootMongodb/pom.xml" />
       </list>
     </option>
   </component>
