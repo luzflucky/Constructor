@@ -6,16 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Springlogback" />
+        <module name="LongPolling" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="DemoClient" target="1.8" />
-      <module name="SpringBootMongodb" target="1.8" />
-      <module name="springbootredis" target="1.8" />
-      <module name="SpringCloudClinet" target="1.8" />
-      <module name="SpringCloudServer" target="1.8" />
-      <module name="Springlogback" target="1.8" />
+      <module name="LongPolling" target="1.6" />
     </bytecodeTargetLevel>
   </component>
 </project>

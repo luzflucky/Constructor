@@ -4,7 +4,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/SpringCloudClinet/pom.xml" />
-        <option value="$PROJECT_DIR$/SpringBootMongodb/pom.xml" />
+        <option value="$PROJECT_DIR$/Springlogback/pom.xml" />
       </list>
     </option>
   </component>
